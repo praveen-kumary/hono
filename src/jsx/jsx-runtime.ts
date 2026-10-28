@@ -17,7 +17,7 @@ export const jsxAttr = (
   key: string,
   v: string | Promise<string> | Record<string, string | number | null | undefined | boolean>
 ): HtmlEscapedString | Promise<HtmlEscapedString> => {
-  if (!isValidAttributeName(key)) {
+  if (!isValidAttributeName(key) || key === 'ref') {
     return raw('')
   }
   const buffer: StringBuffer = [`${key}="`] as StringBuffer

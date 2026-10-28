@@ -94,4 +94,16 @@ describe('createElement', () => {
 
     expect((<div>{object as never}</div>).toString()).toBe('<div></div>')
   })
+
+  it('should not render ref as attribute in SSR', () => {
+    const ref = { current: null }
+    expect(
+      (
+        <a ref={ref} href='/'>
+          x
+        </a>
+      ).toString()
+    ).toBe('<a href="/">x</a>')
+    expect((<div ref={() => {}}>test</div>).toString()).toBe('<div>test</div>')
+  })
 })

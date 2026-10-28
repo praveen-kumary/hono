@@ -27,6 +27,11 @@ describe('jsx-runtime', () => {
     expect(String(jsxAttr('foo`bar', 'x'))).toBe('')
   })
 
+  it('Should not render ref as attribute in jsxAttr()', () => {
+    expect(String(jsxAttr('ref', 'test-ref'))).toBe('')
+    expect(String(jsxAttr('ref', { current: null }))).toBe('')
+  })
+
   it('Should skip invalid non-string attribute values in jsxAttr()', async () => {
     const invalidKey = '" onfocus="alert(1)'
 
